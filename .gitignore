@@ -1,0 +1,5 @@
+backend/node_modules
+.idea
+backend/files
+backend/sqlite_db
+backend/sqlite_db-journal
