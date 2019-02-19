@@ -7,7 +7,9 @@ module.exports = function getJurisdictionContactInfos(req, res, next) {
 
   //INSERT YOUR CODE HERE
   return res.json({
-    contactInfos : {}
+    contactInfos : {
+      telephone: []
+    }
   });
 };
 

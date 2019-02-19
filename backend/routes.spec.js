@@ -10,9 +10,14 @@ afterAll(async () => {
 });
 
 describe('Get Jurisdiction contact infos', () => {
-    it('should return jurisdiction basic info', async () => {
+    it('should return jurisdiction contactInfos object', async () => {
         const response = await request(server).get('/getJurisdictionContactInfos/JUR64FE952E9CA370DAC630');
         expect(response.status).toEqual(200);
-        expect(response.body).toContain("telephone");
+        expect(typeof(response.body.contactInfos)).toBe('object');           // expect(typeof(response.body.contactInfos.telephone)).toBe('array');
     });
+    it("should contain a list of phone numbers", async() =>{
+        const response = await request(server).get('/getJurisdictionContactInfos/JUR64FE952E9CA370DAC630');
+        expect(typeof(response.body.telephone).toBe('array'))
+    })
+
 });

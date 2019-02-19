@@ -23,7 +23,7 @@ app.use(function errorHandler(err, req, res, next) {
 	 console.error(err.message)
    // No HTTP error code specified? Make it an error 500
    const error_status = err.status || 500
-	 res.sendFile(path.join(__dirname, 'views') + '/error.html')
+	 res.status(error_status).sendFile(path.join(__dirname, 'views') + '/error.html')
 })
 
 
