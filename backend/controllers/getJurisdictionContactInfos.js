@@ -12,7 +12,8 @@ module.exports = async function getJurisdictionContactInfos(req, res, next) {
 
 const getJurisdictionInfo = async (httpParams) => {
   let jurisdiction_id = httpParams.jurisdiction_id
-  await findJurisdictionInDB(jurisdiction_id)
+  const results = await findJurisdictionInDB(jurisdiction_id)
+  const contact_infos = serializeJurisdiction(results)
   return contact_infos
 }
 
@@ -24,10 +25,13 @@ const findJurisdictionInDB = async (jurisdiction_id) => {
   ON jurisdictions.jurisdiction_id = jurisdictions_verified_contact_infos.jurisdiction_id
   WHERE jurisdictions.jurisdiction_id = ?
   `
-  await db.all(SQLQuery,jurisdiction_id,(err,row) => {
-    if (err) { throw err }
-    serializeJurisdiction(row)
+  return new Promise((resolve,reject)=>{
+    db.all(SQLQuery,jurisdiction_id,(err,row) => {
+      if (err) {reject (err) }
+      resolve(row)
+    })
   })
+  
 }
 
 const serializeJurisdiction = (allJurisdictions) => {
@@ -62,7 +66,7 @@ const serializeJurisdiction = (allJurisdictions) => {
   if (verifiedContacts.email == false && allJurisdictions[0].email != null) {
     serializedJurisdiction.email.push({data: allJurisdictions[0].email, verified: false})
   }  
-  setValueInObject(serializedJurisdiction)
+  return serializedJurisdiction
 }
 
 const processVerifiedData = (verifiedData) => {
@@ -91,8 +95,4 @@ const faxIsDuplicate = (jurisdictionData) => {
     return true
   }
   return false
-}
-
-const setValueInObject = (value) => {
-  contact_infos = value
 }

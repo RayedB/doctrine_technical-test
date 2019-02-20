@@ -17,7 +17,8 @@ describe('Get Jurisdiction contact infos', () => {
     });
     it("should contain a list of phone numbers", async() =>{
         const response = await request(server).get('/getJurisdictionContactInfos/JUR64FE952E9CA370DAC630');
-        expect(typeof(response.body.telephone).toBe('array'))
+        expect(response.status).toEqual(200);
+        expect(typeof(response.body.contactInfos.telephone).toBeType('array'))
     })
 
 });
