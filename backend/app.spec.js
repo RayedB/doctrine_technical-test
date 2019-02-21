@@ -162,15 +162,15 @@ describe('Get Jurisdiction details and decisions', () => {
 
 describe('Get Decision Data', () => {
     it('should return decision data with title and decision', async () => {
-        const expectedResponse = {
-            "decision": {
-                "title": "",
-                "ana_summary": ""
+        const expectedResponse = 
+            {
+                title: "Cour de cassation, criminelle, Chambre criminelle, 31 octobre 2017, 17-80.872, Publié au bulletin",
+                ana_summary: "Il résulte de l'article 706-30-1, deuxième alinéa, du code de procédure pénale que la pesée de produits stupéfiants ne peut être réalisée, au cours de l'enquête de flagrance ou de l'enquête préliminaire, qu'en présence de la personne qui détenait les substances, ou, à défaut, en présence de deux témoins, et qu'en cas de non-respect de ces prescriptions, le grief de ladite personne résulte nécessairement de la destruction des substances stupéfiantes.\\nEncourt la cassation l'arrêt de la chambre de l'instruction qui écarte le moyen de nullité pris de l'irrégularité de l'opération de pesée alors que, d'une part, les prescriptions dudit texte sont applicables à la pesée des produits stupéfiants découverts au cours de l'enquête de flagrance, d'autre part, il est sans emport que le procès-verbal de pesée ne fasse pas ressortir l'intention des fonctionnaires de police de procéder ultérieurement à leur destruction, enfin, les produits stupéfiants saisis ont été détruits, en sorte que le grief de l'intéressé, qui ne peut plus solliciter une nouvelle pesée contradictoire, est établi",
+                solution: "Cassation partielle",
+                dec_date: "2017-10-31"
             }
-        }
-        const response = await request(server).get('/decision/JURITEXT000035923944');
+        const response = await request(server).get('/decision/JURITEXT000035974619');
         expect(response.status).toEqual(200);
-        expect(typeof(response.body.contactInfos)).toBe('object');
         expect(response.body).toMatchObject(expectedResponse)
     });
 });
