@@ -39,7 +39,7 @@ module.exports = async function(req, res, next) {
 
   const findDecisionsInDB = async () => {
     const DecisionsSQLQuery = `
-      SELECT title, formation, solution, dec_date
+      SELECT title, 'localhost:8080/' || doc_id AS url, formation, solution, dec_date
       FROM decisions
       WHERE formation = "CHAMBRE_CRIMINELLE"
       AND solution LIKE "Cassation%"
@@ -56,44 +56,4 @@ module.exports = async function(req, res, next) {
       })
 
   }
-
-  // let jurisdiction_id = req.params.jurisdiction_id
-  // const StateCouncilSQLQuery = `
-  // SELECT *
-  // FROM jurisdictions
-  // WHERE jurisdiction_id = ?
-  // `;
-  // const CassationSQLQuery = `
-  // SELECT *
-  // FROM jurisdictions
-  // WHERE jurisdiction_id = "JUR359D88F9B71718E7F4A6"
-  // -----
-  // SELECT title, ana_summary, formation, solution, dec_date
-  // FROM decisions
-  // WHERE formation = "CHAMBRE_CRIMINELLE"
-  // AND solution LIKE "Cassation%"
-  // AND dec_date > "1980-01-01"
-  // ORDER BY dec_date 
-  // DESC 
-  // LIMIT 10
-  // `;
-
-  // if (jurisdiction_id !== 'JUR359D88F9B71718E7F4A6'){
-  //   db.get( StateCouncilSQLQuery
-  //     , [jurisdiction_id], (err, row) => {
-  //       if (err) return next(err)
-    
-  //       if (row == null) return next(new Error('Could not find jurisdiction'))
-    
-  //       res.json({ jurisdiction_infos: row })
-  //     })
-  // } else {
-  //   db.all(CassationSQLQuery, (err, row) => {
-  //     if (err) return next(err)
-
-  //     if (row == null) return next(new Error('Could not find jurisdiction'))
-
-  //     res.json({ jurisdiction_infos: row })
-  //   })
-  // }
   
