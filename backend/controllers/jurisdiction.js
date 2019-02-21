@@ -39,7 +39,7 @@ module.exports = async function(req, res, next) {
 
   const findDecisionsInDB = async () => {
     const DecisionsSQLQuery = `
-      SELECT title, 'localhost:8080/' || doc_id AS url, formation, solution, dec_date
+      SELECT title, 'localhost:8080/decision/' || doc_id AS url, formation, solution, dec_date
       FROM decisions
       WHERE formation = "CHAMBRE_CRIMINELLE"
       AND solution LIKE "Cassation%"

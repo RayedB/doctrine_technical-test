@@ -81,70 +81,70 @@ describe('Get Jurisdiction details and decisions', () => {
                     "decisions": [
                         {
                             "title": "Cour de cassation, criminelle, Chambre criminelle, 31 octobre 2017, 17-80.872, Publié au bulletin",
-                            "url": "localhost:8080/JURITEXT000035974619",
+                            "url": "localhost:8080/decision/JURITEXT000035974619",
                             "formation": "CHAMBRE_CRIMINELLE",
                             "solution": "Cassation partielle",
                             "dec_date": "2017-10-31"
                             },
                             {
                             "title": "Cour de cassation, criminelle, Chambre criminelle, 31 octobre 2017, 16-86.897, Publié au bulletin",
-                            "url": "localhost:8080/JURITEXT000035974645",
+                            "url": "localhost:8080/decision/JURITEXT000035974645",
                             "formation": "CHAMBRE_CRIMINELLE",
                             "solution": "Cassation",
                             "dec_date": "2017-10-31"
                             },
                             {
                             "title": "Cour de cassation, criminelle, Chambre criminelle, 31 octobre 2017, 17-80.710, Publié au bulletin",
-                            "url": "localhost:8080/JURITEXT000035974612",
+                            "url": "localhost:8080/decision/JURITEXT000035974612",
                             "formation": "CHAMBRE_CRIMINELLE",
                             "solution": "Cassation sans renvoi",
                             "dec_date": "2017-10-31"
                             },
                             {
                             "title": "Cour de cassation, criminelle, Chambre criminelle, 31 octobre 2017, 16-83.683, Publié au bulletin",
-                            "url": "localhost:8080/JURITEXT000035974616",
+                            "url": "localhost:8080/decision/JURITEXT000035974616",
                             "formation": "CHAMBRE_CRIMINELLE",
                             "solution": "Cassation et désignation de juridiction",
                             "dec_date": "2017-10-31"
                             },
                             {
                             "title": "Cour de cassation, criminelle, Chambre criminelle, 25 octobre 2017, 16-83.724, Publié au bulletin",
-                            "url": "localhost:8080/JURITEXT000035924269",
+                            "url": "localhost:8080/decision/JURITEXT000035924269",
                             "formation": "CHAMBRE_CRIMINELLE",
                             "solution": "Cassation partielle",
                             "dec_date": "2017-10-25"
                             },
                             {
                             "title": "Cour de cassation, criminelle, Chambre criminelle, 24 octobre 2017, 16-85.875, Publié au bulletin",
-                            "url": "localhost:8080/JURITEXT000035923944",
+                            "url": "localhost:8080/decision/JURITEXT000035923944",
                             "formation": "CHAMBRE_CRIMINELLE",
                             "solution": "Cassation",
                             "dec_date": "2017-10-24"
                             },
                             {
                             "title": "Cour de cassation, criminelle, Chambre criminelle, 24 octobre 2017, 16-85.975, Publié au bulletin",
-                            "url": "localhost:8080/JURITEXT000035923898",
+                            "url": "localhost:8080/decision/JURITEXT000035923898",
                             "formation": "CHAMBRE_CRIMINELLE",
                             "solution": "Cassation partielle sans renvoi",
                             "dec_date": "2017-10-24"
                             },
                             {
                             "title": "Cour de cassation, criminelle, Chambre criminelle, 17 octobre 2017, 16-87.249, Publié au bulletin",
-                            "url": "localhost:8080/JURITEXT000035847413",
+                            "url": "localhost:8080/decision/JURITEXT000035847413",
                             "formation": "CHAMBRE_CRIMINELLE",
                             "solution": "Cassation et désignation de juridiction",
                             "dec_date": "2017-10-17"
                             },
                             {
                             "title": "Cour de cassation, criminelle, Chambre criminelle, 17 octobre 2017, 16-83.643, Publié au bulletin",
-                            "url": "localhost:8080/JURITEXT000035847400",
+                            "url": "localhost:8080/decision/JURITEXT000035847400",
                             "formation": "CHAMBRE_CRIMINELLE",
                             "solution": "Cassation et désignation de juridiction",
                             "dec_date": "2017-10-17"
                             },
                             {
                             "title": "Cour de cassation, criminelle, Chambre criminelle, 11 octobre 2017, 16-86.868, Publié au bulletin",
-                            "url": "localhost:8080/JURITEXT000035806734",
+                            "url": "localhost:8080/decision/JURITEXT000035806734",
                             "formation": "CHAMBRE_CRIMINELLE",
                             "solution": "Cassation sans renvoi",
                             "dec_date": "2017-10-11"
@@ -168,7 +168,7 @@ describe('Get Decision Data', () => {
                 "ana_summary": ""
             }
         }
-        const response = await request(server).get('/getJurisdictionContactInfos/JUR359D88F9B71718E7F4A6');
+        const response = await request(server).get('/decision/JURITEXT000035923944');
         expect(response.status).toEqual(200);
         expect(typeof(response.body.contactInfos)).toBe('object');
         expect(response.body).toMatchObject(expectedResponse)
