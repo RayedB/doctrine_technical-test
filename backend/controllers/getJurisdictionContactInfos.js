@@ -2,16 +2,15 @@ const { db } = require("./../models/dbInit");
 
 module.exports = async function getJurisdictionContactInfos(req, res, next) {
   try {
-    const rawData = await getJurisdictionInfo(req.params)
+    let jurisdiction_id = req.query.jurisdiction_id;
+    const rawData = await getJurisdictionInfo(jurisdiction_id)
     await res.json({ contactInfos: rawData })
   } catch (err) {
     res.status(500).json({error: "Something went wrong", message: err})
   }
-  
 }
 
-const getJurisdictionInfo = async (httpParams) => {
-  let jurisdiction_id = httpParams.jurisdiction_id
+const getJurisdictionInfo = async (jurisdiction_id) => {
   const results = await findJurisdictionInDB(jurisdiction_id)
   const contact_infos = serializeJurisdiction(results)
   return contact_infos

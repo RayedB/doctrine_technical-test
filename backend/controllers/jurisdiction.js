@@ -12,16 +12,9 @@ module.exports = async function(req, res, next) {
 }
   const getJurisdictionData = async (jurisdiction_identifier) => {
     const jurisdictionData = await findJurisdictionInDB(jurisdiction_identifier)
-    if (isCourDeCassation(jurisdiction_identifier)){
-      const decisions = await findDecisionsInDB();
-      jurisdictionData.decisions = decisions
-    }
     return jurisdictionData
   }
 
-  const isCourDeCassation = (jurisdiction_identifier) => {
-    return jurisdiction_identifier == "JUR359D88F9B71718E7F4A6"  ? true : false
-  }
 
   const findJurisdictionInDB = async (jurisdiction_identifier) => {
       const JurisdictionSQLQuery = `

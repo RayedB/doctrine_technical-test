@@ -2,7 +2,7 @@ const { db } = require("./../models/dbInit");
 
 module.exports = async function getDecision(req, res, next) {
   try{
-    let doc_id = req.params.doc_id;
+    let doc_id = req.query.doc_id;
     const decision = await findDecisionInDB(doc_id);
     res.status(200).json(decision)
   } catch (error) {
