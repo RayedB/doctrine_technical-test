@@ -44,8 +44,8 @@ export class Jurisdiction extends React.Component {
     fetchJurisdiction(id)
       .then(({ jurisdiction_infos }) => this.setState({ jurisdiction_infos }))
       .then(() => fetchJuridictionInfo(id))
-      .then((jurisdiction_contact_infos) =>
-        this.setState(jurisdiction_contact_infos)
+      .then(({jurisdiction_contact_infos}) =>
+        this.setState({jurisdiction_contact_infos})
       )
       .then(() => fetchTopDecisions(id))
       .then(({ jurisdiction_top_decisions }) =>
