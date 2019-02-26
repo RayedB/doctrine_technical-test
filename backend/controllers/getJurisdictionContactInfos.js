@@ -4,7 +4,7 @@ module.exports = async function getJurisdictionContactInfos(req, res, next) {
   try {
     let jurisdiction_id = req.query.jurisdiction_id;
     const rawData = await getJurisdictionInfo(jurisdiction_id)
-    await res.json({ contactInfos: rawData })
+    res.status(200).json({ contactInfos : rawData })
   } catch (err) {
     res.status(500).json({error: "Something went wrong", message: err})
   }

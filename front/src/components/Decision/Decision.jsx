@@ -10,7 +10,7 @@ export class Decision extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.id;
 
-    fetchDecision(id).then(({ decision }) => this.setState({ decision }));
+    fetchDecision(id).then((decision) => this.setState({ decision }));
   }
 
   render() {

@@ -4,7 +4,7 @@ module.exports = async function getTopDecisions(req, res, next) {
     try {
       if (isCourDeCassation(req.query.jurisdiction_id)){
         const decisions = await findDecisionsInDB();
-        res.status(200).json(decisions)
+        res.status(200).json({jurisdiction_top_decisions: decisions})
       }
     } catch (err) {
       res.status(500).json({error: "Something went wrong", message: err})
@@ -17,7 +17,7 @@ module.exports = async function getTopDecisions(req, res, next) {
 
   const findDecisionsInDB = async () => {
     const DecisionsSQLQuery = `
-      SELECT title, 'localhost:8080/decision/' || doc_id AS url, formation, solution, dec_date
+      SELECT title, 'localhost:8080/decision/' || doc_id AS url, doc_id ,formation, solution, dec_date
       FROM decisions
       WHERE formation = "CHAMBRE_CRIMINELLE"
       AND solution LIKE "Cassation%"

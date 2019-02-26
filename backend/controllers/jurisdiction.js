@@ -29,24 +29,4 @@ module.exports = async function(req, res, next) {
         })
       })
   }
-
-  const findDecisionsInDB = async () => {
-    const DecisionsSQLQuery = `
-      SELECT title, 'localhost:8080/decision/' || doc_id AS url, formation, solution, dec_date
-      FROM decisions
-      WHERE formation = "CHAMBRE_CRIMINELLE"
-      AND solution LIKE "Cassation%"
-      AND dec_date > "1980-01-01"
-      ORDER BY dec_date 
-      DESC
-      LIMIT 10
-      `;
-      return new Promise((resolve,reject)=>{
-        db.all(DecisionsSQLQuery,(err,row) => {
-          if (err) {reject (err) }
-          resolve(row)
-        })
-      })
-
-  }
   

@@ -27,19 +27,41 @@ export class Jurisdiction extends React.Component {
     jurisdiction_top_decisions: []
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const id = this.props.match.params.id;
+    // const fetchJurisdictionFromAPI = fetchJurisdiction(id)
+    // const fetchJurisdictionInfosFromAPI = fetchJuridictionInfo(id)
+    // const fetchTopDecisionsFromAPI = fetchTopDecisions(id)
+    // Promise.all([fetchJurisdictionFromAPI,fetchJurisdictionInfosFromAPI, fetchTopDecisionsFromAPI])
+    //   .then((responses) => {
+    //     console.log(responses)
+    //     this.jurisdiction_infos = responses[0]
+    //     let contacts = responses[1]
+    //     let decisions = responses[2]
+    //     this.setState(jurisdiction_infos})
+    //   })
 
     fetchJurisdiction(id)
       .then(({ jurisdiction_infos }) => this.setState({ jurisdiction_infos }))
       .then(() => fetchJuridictionInfo(id))
-      .then(({ jurisdiction_contact_infos }) =>
-        this.setState({ jurisdiction_contact_infos })
+      .then((jurisdiction_contact_infos) =>
+        this.setState(jurisdiction_contact_infos)
       )
       .then(() => fetchTopDecisions(id))
       .then(({ jurisdiction_top_decisions }) =>
         this.setState({ jurisdiction_top_decisions })
       );
+
+    // const { jurisdiction_infos } = await fetchJurisdiction(id)
+    // this.setState({ jurisdiction_infos })
+
+    // const jurisdiction_contact_infos = await fetchJuridictionInfo(id)
+    // console.log(jurisdiction_contact_infos)
+    // this.setState(jurisdiction_contact_infos)
+
+    // const { jurisdiction_top_decisions } = await fetchTopDecisions(id)
+    // this.setState({ jurisdiction_top_decisions })
+    
   }
 
   render() {
@@ -49,7 +71,6 @@ export class Jurisdiction extends React.Component {
       jurisdiction_top_decisions
     } = this.state;
     const { fax = [], telephone = [], email = [] } = jurisdiction_contact_infos;
-
     return (
       <Grid container spacing={24} style={{ paddingTop: "24px" }}>
         <Grid item xs={7}>
