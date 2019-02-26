@@ -17,7 +17,7 @@ module.exports = async function getTopDecisions(req, res, next) {
 
   const findDecisionsInDB = async () => {
     const DecisionsSQLQuery = `
-      SELECT title, 'localhost:8080/decision/' || doc_id AS url, doc_id ,formation, solution, dec_date
+      SELECT title, doc_id ,formation, solution, dec_date
       FROM decisions
       WHERE formation = "CHAMBRE_CRIMINELLE"
       AND solution LIKE "Cassation%"
